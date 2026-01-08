@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Tue Apr 22 2025 14:43:20 GMT+0000 (Coordinated Universal Time) -->
+<html data-wf-domain="tuans-stellar-site-71af88.webflow.io" data-wf-page="66b0b661e6a25f4652085da6"
+  data-wf-site="66b0b661e6a25f4652085d9f" data-wf-status="1">
+
+<head>
+<style>
+  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+  .modal-content { background: white; margin: 10% auto; padding: 20px; width: 70%; max-width: 400px; border-radius: 5px; }
+  .close-btn { float: right; font-size: 20px; cursor: pointer; }
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; margin-bottom: 5px; }
+  .form-group input { width: 100%; padding: 8px; box-sizing: border-box; }
+  .submit-btn { background: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; width: 100%; }
+  .alternate-auth { text-align: center; margin: 15px 0; }
+  .social-login { display: flex; justify-content: center; gap: 10px; }
+  .social-btn img { width: 24px; height: 24px; }
+  .switch-form { text-align: center; }
+</style>
+  <meta charset="utf-8" />
+  <title>LetHimmCook</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="./style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script
+    type="text/javascript">WebFont.load({ google: { families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Montserrat Alternates:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic:latin,vietnamese"] } });</script>
+  <script
+    type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+  <link
+    href="https://static.vecteezy.com/system/resources/previews/011/378/028/large_2x/vintage-hot-cook-logo-design-for-kitchen-chef-cooking-logo-design-vector.jpg"
+    rel="shortcut icon" type="image/x-icon" />
+  <link href="https://cdn.prod.website-files.com/img/webclip.png" rel="apple-touch-icon" />
+</head>
+
+<body class="body">
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeLoginModal">&times;</span>
+      <h2>Đăng nhập</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email hoặc tên đăng nhập</label>
+          <input type="text" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Mật khẩu</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Đăng nhập</button>
+      </form>
+      <div class="alternate-auth">
+        <p>Hoặc đăng nhập bằng</p>
+        <div class="social-login">
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Google" class="social-icon">
+          </div>
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Facebook" class="social-icon">
+          </div>
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Apple" class="social-icon">
+          </div>
+        </div>
+      </div>
+      <div class="switch-form">
+        <p>Chưa có tài khoản? <a href="#" id="switchToSignup">Đăng ký ngay</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeSignupModal">&times;</span>
+      <h2>Đăng ký</h2>
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="signupName">Họ tên</label>
+          <input type="text" id="signupName" required>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Mật khẩu</label>
+          <input type="password" id="signupPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="signupConfirmPassword">Xác nhận mật khẩu</label>
+          <input type="password" id="signupConfirmPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Đăng ký</button>
+      </form>
+      <div class="alternate-auth">
+        <p>Hoặc đăng ký bằng</p>
+        <div class="social-login">
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Google" class="social-icon">
+          </div>
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Facebook" class="social-icon">
+          </div>
+          <div class="social-btn">
+            <img src="https://via.placeholder.com/24" alt="Apple" class="social-icon">
+          </div>
+        </div>
+      </div>
+      <div class="switch-form">
+        <p>Đã có tài khoản? <a href="#" id="switchToLogin">Đăng nhập ngay</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="w-layout-blockcontainer container w-container">
+    <div class="w-layout-hflex flex-block">
+      <div class="w-layout-vflex flex-block-2 left-section">
+        <h1 class="heading-2">Logo</h1>
+        <div class="w-layout-vflex flex-block-3">
+          <a href="#" class="link-home w-inline-block"><img
+          src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807a77bb36e7820a625e0ae_home.png"
+          loading="lazy" alt="" class="image-5" /></a>
+      <a href="#" class="link-block-4 w-inline-block" id="uploadBtn"><img
+          src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807a7875f4de83da1dfeee1_add.png"
+          loading="lazy" alt="" class="image-6" /></a>
+      <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+    </div>
+      </div>
+      <div class="div-block-4 right-section">
+        <div class="nav-container">
+          <div class="nav">
+            <div class="logo">
+              <div class="text">LetHimCook</div>
+            </div>
+            <div class="search-bar">
+              <form class="search-2 w-form" id="searchForm">
+                <img
+                  src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68037e42eb4bf0f0e7a104d4_search.png"
+                  loading="lazy" width="256" alt="" class="image" />
+                <label for="search" class="field-label">Search</label>
+                <input class="search-input-2 w-input" autofocus="true" maxlength="256" name="query"
+                  placeholder="Tìm kiếm ..." type="search" id="search-2" required="" />
+                <input type="submit" class="search-button-2 w-button" value="Search" />
+              </form>
+              <div id="searchResults" style="display: none; margin-top: 10px; background: white; padding: 10px; border: 1px solid #ccc;"></div>
+            </div>
+            <div class="login-sign-up">
+              <a href="#" class="login btn" id="loginBtn">
+                <div class="text-block">Đăng nhập</div>
+              </a>
+              <a href="#" class="link-block w-inline-block" id="signupBtn">
+                <div class="sign-up btn">
+                  <div class="text-3">Đăng ký</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="w-layout-hflex tag-filter">
+            <div class="filter-btn"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680778e6c7adfa0cf6caee1f_filter.png"
+                loading="lazy" sizes="(max-width: 767px) 100vw, 512.0023193359375px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680778e6c7adfa0cf6caee1f_filter-p-500.png 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680778e6c7adfa0cf6caee1f_filter.png 512w"
+                alt="" class="image-3" /></div>
+            <div class="scroll-button left"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68079c17587f631a8f74aec4_left-chevron.png"
+                loading="lazy" alt="" class="image-3" /></div>
+            <div class="w-layout-hflex tag-scroll-wrapper"><a href="#" class="link-block-2 w-inline-block orange"><img
+                  src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68077c8fb1c17ae5757b16a9_fast-food.png"
+                  loading="lazy" sizes="(max-width: 767px) 100vw, 512.0023193359375px"
+                  srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68077c8fb1c17ae5757b16a9_fast-food-p-500.png 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68077c8fb1c17ae5757b16a9_fast-food.png 512w"
+                  alt="" class="image-4" />
+                <div class="text-block-2">Đồ ăn nhanh</div>
+              </a><a href="#" class="link-block-2 w-inline-block light-green"><img
+                  src="https://cdn-icons-png.flaticon.com/512/706/706195.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Đồ ăn chay</div>
+              </a><a href="#" class="link-block-2 w-inline-block red"><img
+                  src="https://cdn-icons-png.flaticon.com/512/2682/2682340.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Bánh ngọt</div>
+              </a><a href="#" class="link-block-2 w-inline-block purple"><img
+                  src="https://cdn-icons-png.flaticon.com/512/938/938063.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Kem</div>
+              </a><a href="#" class="link-block-2 w-inline-block light-blue"><img
+                  src="https://cdn-icons-png.flaticon.com/512/2388/2388087.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Bánh quy</div>
+              </a><a href="#" class="link-block-2 w-inline-block green"><img
+                  src="https://cdn-icons-png.flaticon.com/512/2652/2652631.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Ăn sáng</div>
+              </a><a href="#" class="link-block-2 w-inline-block blue"><img
+                  src="https://cdn-icons-png.flaticon.com/512/2515/2515189.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Ăn trưa</div>
+              </a><a href="#" class="link-block-2 w-inline-block orange"><img
+                  src="https://cdn-icons-png.flaticon.com/512/5989/5989788.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Ăn vặt</div>
+              </a><a href="#" class="link-block-2 w-inline-block light-green"><img
+                  src="https://cdn-icons-png.flaticon.com/512/3778/3778570.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Ăn tối</div>
+              </a><a href="#" class="link-block-2 w-inline-block red"><img
+                  src="https://cdn-icons-png.flaticon.com/512/282/282537.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Tráng Miệng</div>
+              </a><a href="#" class="link-block-2 w-inline-block purple"><img
+                  src="https://cdn-icons-png.flaticon.com/512/5787/5787016.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Burger</div>
+              </a><a href="#" class="link-block-2 w-inline-block light-blue"><img
+                  src="https://cdn-icons-png.flaticon.com/512/706/706918.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2 ">Pizza</div>
+              </a><a href="#" class="link-block-2 w-inline-block green"><img
+                  src="https://cdn-icons-png.flaticon.com/512/3480/3480618.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2 ">Mì Ý</div>
+              </a><a href="#" class="link-block-2 w-inline-block blue"><img
+                  src="https://cdn-icons-png.flaticon.com/512/1625/1625062.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Bánh mì</div>
+              </a><a href="#" class="link-block-2 w-inline-block orange"><img
+                  src="https://cdn-icons-png.flaticon.com/512/4780/4780045.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Xôi</div>
+              </a><a href="#" class="link-block-2 w-inline-block light-green"><img
+                  src="https://cdn-icons-png.flaticon.com/512/3361/3361969.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Cơm chiên</div>
+              </a><a href="#" class="link-block-2 w-inline-block red"><img
+                  src="https://cdn-icons-png.flaticon.com/512/12692/12692773.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Đồ ăn Hàn</div>
+              </a><a href="#" class="link-block-2 w-inline-block purple"><img
+                  src="https://cdn-icons-png.flaticon.com/512/2518/2518445.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, 512.0023193359375px" alt="" class="image-4" />
+                <div class="text-block-2">Đồ ăn Trung</div>
+              </a></div>
+            <div class="scroll-button right"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68079cb4ca15dd86f11d73c2_chevron.png"
+                loading="lazy" alt="" class="image-3" /></div>
+          </div>
+        </div>
+        <section class="section">
+          <h1 class="heading">Khám phá</h1>
+          <div class="masonry-container">
+            <div data-w-id="128d5fca-3cc3-2c36-ff28-440f5da2e120" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d047300cf09710432ccd_6a26783508f440a7498bbe029d9306ac.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="75e0b400-8c81-ce24-a2d9-a195d9da520f" class="masonry-card">
+              <div style="padding-top:75%" class="masonry-element w-video w-embed"><iframe class="embedly-embed"
+                  src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FG7MXCF52O2g%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fshorts%2FG7MXCF52O2g%3Fundefined&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FG7MXCF52O2g%2Fhq2.jpg&type=text%2Fhtml&schema=youtube"
+                  width="940" height="705" scrolling="no" allowfullscreen
+                  title="Trying Americas Most Famous Texas BBQ"></iframe></div>
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="c24f2375-d667-8d5b-6114-d41210a3ef33" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0b1ac7691cd07f19e13_d5d4bb7e8a83e3cc20f3383e4ca3e5c7.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="689dd79c-50c5-3cc9-2ec0-6d138a23bbc6" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0b11bcb2dff07320ac4_6b43b7a2312003ff41369c904cc173c2.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="1232676f-c43b-bf29-212f-9692c370c479" class="masonry-card">
+              <a href="./FooddetailPancake.html"><img
+                  src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake.jpg"
+                  loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                  srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake-p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake-p-800.jpg 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake-p-1080.jpg 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake-p-1600.jpg 1600w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake-p-2000.jpg 2000w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4ac908a752f599ce3a_Pancake.jpg 2841w"
+                  alt="" class="masonry-element" />
+              </a>
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="./FooddetailPancake.html" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="e5d66434-238d-29e3-5ae7-d78ccc355c16" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0b158514b6a4982c350_1e92708d4c30a0c225cd6e2a8d6aac8b.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="89e08ae5-5f5f-c181-c74f-ecc7ee4c0ebb" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68039b21667940d3591b77a7_667fd7fe-058c-44af-aaae-dc6de5da235e.webp"
+                loading="lazy" width="704" sizes="(max-width: 767px) 100vw, 703.9931030273438px" alt=""
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68039b21667940d3591b77a7_667fd7fe-058c-44af-aaae-dc6de5da235e-p-500.webp 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68039b21667940d3591b77a7_667fd7fe-058c-44af-aaae-dc6de5da235e-p-800.webp 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68039b21667940d3591b77a7_667fd7fe-058c-44af-aaae-dc6de5da235e-p-1080.webp 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68039b21667940d3591b77a7_667fd7fe-058c-44af-aaae-dc6de5da235e.webp 1408w"
+                class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="a03e3bb3-15de-f638-7fe1-a95caf6ce37e" class="masonry-card">
+              <img src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a5adccc4c67a9c7ad7a0_th.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="129f7e1f-22fc-547c-801c-ba08e11e1226" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0f456a6e7c277c56763_f0497300bf60df86d13cb3553b5aad01.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="a50a8aaf-f1eb-0d8d-a8e3-c221ce1f6051" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0f456a6e7c277c5675c_f6f2c858879413460b2748682a31763d.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="2ad71ddb-4453-c4ee-ebf8-0f5dba3850f8" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d0f48d801f228f3812cb_9c1a69a9ddab19ee3ff0300ec3a9c96b.jpg"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="f23b5143-877e-fdf5-7b0a-bce2dfca3825" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6805d132d5c6efbff6fffea0_videoframe_7009.png"
+                loading="lazy" width="704" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="9e9a7814-848b-9075-0793-1703cfe8e465" class="masonry-card">
+              <a href="./FooddetailSpaghetti.html">
+                <img
+                  src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4a95da47ba092818b9_Pasta.jpg"
+                  loading="lazy" alt="" class="masonry-element" />
+              </a>
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="./FooddetailSpaghetti.html" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="57b6e406-5b6b-dce4-cd82-63cf45318b84" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a081a0e0fa652a7c810a_48253797-e593-4470-9bcb-5b4a85de368c.webp"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a081a0e0fa652a7c810a_48253797-e593-4470-9bcb-5b4a85de368c-p-500.webp 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a081a0e0fa652a7c810a_48253797-e593-4470-9bcb-5b4a85de368c-p-800.webp 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a081a0e0fa652a7c810a_48253797-e593-4470-9bcb-5b4a85de368c-p-1080.webp 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a081a0e0fa652a7c810a_48253797-e593-4470-9bcb-5b4a85de368c.webp 1408w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="5e35491e-e56e-bd24-64a3-c3fe4869bc39" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a41febd77b444fc83b64_high-protein-raspberry-lemon-and-ricotta-bread-beauty-.jpg"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 750.0000610351562px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a41febd77b444fc83b64_high-protein-raspberry-lemon-and-ricotta-bread-beauty--p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a41febd77b444fc83b64_high-protein-raspberry-lemon-and-ricotta-bread-beauty-.jpg 750w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="5a9c70aa-9051-b80f-3d18-d023782c81d2" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a090b12ac6c26c9dc2c4_a8113144-6f48-4fe3-943f-282c75a98c32.webp"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a090b12ac6c26c9dc2c4_a8113144-6f48-4fe3-943f-282c75a98c32-p-500.webp 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a090b12ac6c26c9dc2c4_a8113144-6f48-4fe3-943f-282c75a98c32-p-800.webp 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a090b12ac6c26c9dc2c4_a8113144-6f48-4fe3-943f-282c75a98c32-p-1080.webp 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a090b12ac6c26c9dc2c4_a8113144-6f48-4fe3-943f-282c75a98c32.webp 1408w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="2dcb7ecf-e24d-ff34-d0c0-0d92bcbdd458" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1395d447db98261e356_Jiffy-Cornbread-Pancake-With-Butter-and-Drizzling-Syrup-On-Top-768x1152.jpg"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 767.9977416992188px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1395d447db98261e356_Jiffy-Cornbread-Pancake-With-Butter-and-Drizzling-Syrup-On-Top-768x1152-p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1395d447db98261e356_Jiffy-Cornbread-Pancake-With-Butter-and-Drizzling-Syrup-On-Top-768x1152.jpg 768w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="e744bea9-17d8-71e5-deaa-83d8229d9de8" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a3a28ae73a9f80bc6e0f_no-knead-bread-1-20.jpg"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a3a28ae73a9f80bc6e0f_no-knead-bread-1-20-p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a3a28ae73a9f80bc6e0f_no-knead-bread-1-20.jpg 1200w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="324ad2d3-50f1-f0ec-9a06-82806ca5656e" class="masonry-card">
+              <a href="./FooddetailHamburger.html"><img
+                  src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4a39b52e5a48cf9ec1_Burger.jpg"
+                  loading="lazy" alt="" class="masonry-element" />
+              </a>
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="./FooddetailHamburger.html" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="8a9876ae-e70a-76b9-a226-32d172811d2b" class="masonry-card">
+              <img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a043fce79fbc044bd8d4_10341bb1-cc47-428f-a572-cf40cf1a54e1.webp"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a043fce79fbc044bd8d4_10341bb1-cc47-428f-a572-cf40cf1a54e1-p-500.webp 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a043fce79fbc044bd8d4_10341bb1-cc47-428f-a572-cf40cf1a54e1-p-800.webp 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a043fce79fbc044bd8d4_10341bb1-cc47-428f-a572-cf40cf1a54e1-p-1080.webp 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a043fce79fbc044bd8d4_10341bb1-cc47-428f-a572-cf40cf1a54e1.webp 1408w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="f8ced28f-2665-f962-9efe-36274a6e6921" class="masonry-card">
+              <div style="padding-top:75%" class="masonry-element w-video w-embed"><iframe class="embedly-embed"
+                  src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FTCdAoM6BbIQ%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fshorts%2FTCdAoM6BbIQ%3Ffeature%3Dshare&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FTCdAoM6BbIQ%2Fhq2.jpg&type=text%2Fhtml&schema=youtube"
+                  width="940" height="705" scrolling="no" allowfullscreen
+                  title="Tomahawk Steak with Garlic Butter Lobster Recipe | Over The Fire Cooking by Derek Wolf"></iframe>
+              </div>
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="0359849c-3739-8747-8dc5-729553833222" class="masonry-card"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a306c66687434a4bad2f_R.jpg"
+                loading="lazy" sizes="(max-width: 767px) 100vw, 650.0000610351562px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a306c66687434a4bad2f_R-p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a306c66687434a4bad2f_R.jpg 650w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="1bee9c9c-ab4a-ffc4-974e-59d447172a4a" class="masonry-card"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a0701adafa33f44aea7f_93cf099f-7570-40fd-8023-06c520c7ca24.webp"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a0701adafa33f44aea7f_93cf099f-7570-40fd-8023-06c520c7ca24-p-500.webp 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a0701adafa33f44aea7f_93cf099f-7570-40fd-8023-06c520c7ca24-p-800.webp 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a0701adafa33f44aea7f_93cf099f-7570-40fd-8023-06c520c7ca24-p-1080.webp 1080w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a0701adafa33f44aea7f_93cf099f-7570-40fd-8023-06c520c7ca24.webp 1408w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="1afec3d4-5fca-2f43-8ac6-5990b6b7ef3b" class="masonry-card"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1950a52f49fd5f2064a_photo.jpg"
+                loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.9884643554688px"
+                srcset="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1950a52f49fd5f2064a_photo-p-500.jpg 500w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1950a52f49fd5f2064a_photo-p-800.jpg 800w, https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6803a1950a52f49fd5f2064a_photo.jpg 1200w"
+                alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+            <div data-w-id="9f34a11c-4de9-6b13-6a2a-db74678fdd78" class="masonry-card"><img
+                src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/68068a4acd07d1c8c10be655_donuts.jpg"
+                loading="lazy" alt="" class="masonry-element" />
+              <div class="secondary-btn-group">
+                <div
+                  style="-webkit-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-80px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn share-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/680714f61a1c6da1cc135169_export.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+                <div
+                  style="-webkit-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(80px, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  class="secondary-btn save-btn"><img
+                    src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/6807125456666aa7f9aa32ad_save-instagram.png"
+                    loading="lazy" alt="" class="image-2" /></div>
+              </div>
+              <div class="primary-btn"><a
+                  style="-webkit-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 80px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+                  href="#" class="button w-button">Truy cập trang</a></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66b0b661e6a25f4652085d9f"
+    type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/js/webflow.schunk.4a394eb5af8156f2.js"
+    type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/js/webflow.schunk.3bf3c06809a02500.js"
+    type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/66b0b661e6a25f4652085d9f/js/webflow.34274687.e53f9eee813a6456.js"
+    type="text/javascript"></script>
+  <script src="./script.js"></script>
+<script>
+  // Hàm gửi yêu cầu POST với dữ liệu JSON
+  function sendPostRequest(url, data, successCallback, errorCallback) {
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(successCallback)
+    .catch(errorCallback);
+  }
+
+  // Xử lý form đăng nhập
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const data = { username, password };
+    sendPostRequest('http://127.0.0.1:5000/login', data,
+      function(response) {
+        if (response.message === 'Login successful') {
+          alert('Đăng nhập thành công');
+          localStorage.setItem('user_id', response.user_id);
+          console.log('User ID:', response.user_id, 'Folder:', response.user_folder);
+          document.getElementById('loginModal').style.display = 'none';
+        } else {
+          alert('Đăng nhập thất bại: ' + response.message);
+        }
+      },
+      function(error) {
+        console.error('Lỗi:', error);
+        alert('Có lỗi xảy ra khi đăng nhập');
+      }
+    );
+  });
+
+  // Xử lý form đăng ký
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = document.getElementById('signupName').value;
+  const email = document.getElementById('signupEmail').value;
+  const password = document.getElementById('signupPassword').value;
+  const confirmPassword = document.getElementById('signupConfirmPassword').value;
+  if (password !== confirmPassword) {
+    alert('Mật khẩu không khớp');
+    return;
+  }
+  const data = { username: email, password };
+  sendPostRequest('http://127.0.0.1:5000/register', data,
+    function(response) {
+      if (response.message === 'User registered successfully') {
+        alert('Đăng ký thành công! Bạn đã được tự động đăng nhập.');
+        localStorage.setItem('user_id', response.user_id);
+        console.log('User ID:', response.user_id, 'Folder:', response.user_folder, 'Email:', response.email);
+        document.getElementById('signupModal').style.display = 'none';
+        // (Tùy chọn) window.location.href = 'dashboard.html';
+      } else {
+        alert('Đăng ký thất bại: ' + response.message);
+      }
+    },
+    function(error) {
+      console.error('Lỗi:', error);
+      alert('Có lỗi xảy ra khi đăng ký');
+    }
+  );
+});
+
+  // Xử lý nút đăng nhập và đăng ký
+  document.getElementById('loginBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('loginModal').style.display = 'block';
+  });
+
+  document.getElementById('signupBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('signupModal').style.display = 'block';
+  });
+
+  // Chuyển đổi giữa đăng nhập và đăng ký
+  document.getElementById('switchToSignup').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('loginModal').style.display = 'none';
+    document.getElementById('signupModal').style.display = 'block';
+  });
+
+  document.getElementById('switchToLogin').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('signupModal').style.display = 'none';
+    document.getElementById('loginModal').style.display = 'block';
+  });
+
+  // Đóng modal
+  document.getElementById('closeLoginModal').addEventListener('click', function() {
+    document.getElementById('loginModal').style.display = 'none';
+  });
+
+  document.getElementById('closeSignupModal').addEventListener('click', function() {
+    document.getElementById('signupModal').style.display = 'none';
+  });
+
+  // Xử lý nút tải ảnh
+  document.getElementById('uploadBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('imageUpload').click();
+  });
+
+  // Xử lý sự kiện chọn file ảnh
+  document.getElementById('imageUpload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (!file) {
+      alert('Vui lòng chọn một hình ảnh');
+      return;
+    }
+
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      alert('Vui lòng đăng nhập trước khi tải ảnh lên');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('user_id', userId);
+
+    fetch('http://127.0.0.1:5000/upload_to_fpga', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        alert('Lỗi: ' + data.error);
+      } else {
+        alert(`Dự đoán món ăn: ${data.predicted_category} (Độ tin cậy: ${(data.confidence * 100).toFixed(2)}%)`);
+      }
+    })
+    .catch(error => {
+      console.error('Lỗi:', error);
+      alert('Có lỗi xảy ra khi tải ảnh lên');
+    });
+  });
+
+  // Xử lý form tìm kiếm
+  document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const query = document.getElementById('search-2').value;
+    if (!query) {
+      alert('Vui lòng nhập từ khóa tìm kiếm');
+      return;
+    }
+
+    fetch(`http://127.0.0.1:5000/recommend?query=${encodeURIComponent(query)}`)
+    .then(response => response.json())
+    .then(data => {
+      const resultsDiv = document.getElementById('searchResults');
+      if (data.error) {
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = `<p>Lỗi: ${data.error}</p>`;
+      } else {
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = '<h3>Kết quả gợi ý:</h3><ul>' +
+          data.recommendations.map(food => `<li>${food}</li>`).join('') + '</ul>';
+      }
+    })
+    .catch(error => {
+      console.error('Lỗi:', error);
+      alert('Có lỗi xảy ra khi tìm kiếm');
+    });
+  });
+</script>
+</body>
+
+</html>
